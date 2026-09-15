@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Arquitetura - State of Data Brasil" id="arch1">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1560" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Título -->
+        <mxCell id="titulo" value="Arquitetura da Solução — State of Data Brasil (Tech Challenge Fase 3)" style="text;html=1;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1000" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- FONTE -->
+        <mxCell id="kaggle" value="Kaggle&#10;State of Data Brasil&#10;(3 edições: 2023-24, 2024-25, 2025-26)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rotation=-1;" vertex="1" parent="1">
+          <mxGeometry x="36" y="114" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- BRONZE -->
+        <mxCell id="s3_bronze" value="S3 — bronze/state_of_data/&#10;ano=2023_2024/ ...&#10;(CSV bruto, 3 tabelas)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="284" y="96" width="260" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="crawler_bronze" value="Glue Crawlers (x3)&#10;+ Classifier CSV custom" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="606" y="112" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- PROCESSAMENTO -->
+        <mxCell id="etl_steps" value="Glue Notebook (PySpark)&#10;• Parsing de cabeçalho (2 formatos)&#10;• Harmonização de schema (De-Para)&#10;• Correção de reindexação de código&#10;• Tipagem (boolean/int/categórico)&#10;• Correções manuais documentadas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d9f2;strokeColor=#7d4a9e;align=left;spacingLeft=10;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="276" y="244" width="260" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- ANOTAÇÕES PESSOAIS -->
+        <mxCell id="nota_reset" value="reconstruí essa parte 2x&#10;(reset do Lab apagou tudo)" style="text;html=1;fontSize=11;fontStyle=2;align=center;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="606" y="185" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_drift" value="aqui: P4_d mudava de&#10;pergunta entre edições" style="text;html=1;fontSize=11;fontStyle=2;align=center;fontColor=#7d4a9e;" vertex="1" parent="1">
+          <mxGeometry x="556" y="255" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="seta_nota_reset" style="edgeStyle=none;curved=1;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#b85450;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="nota_reset" target="crawler_bronze">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seta_nota_drift" style="edgeStyle=none;curved=1;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#7d4a9e;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="nota_drift" target="etl_steps">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- SILVER -->
+        <mxCell id="s3_silver" value="S3 — silver/state_of_data_v2/&#10;(Parquet, particionado por ano_pesquisa)&#10;432 colunas · 14.005 linhas&#10;+ _dicionario_dados/ (schema, ordem ordinal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="280" y="400" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="crawler_silver" value="Glue Crawler (Silver)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="600" y="425" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- GOLD -->
+        <mxCell id="s3_gold" value="S3 — gold/&#10;• perfil_mercado&#10;• remuneracao_por_perfil&#10;• diversidade&#10;• adocao_tecnologias (unpivot)&#10;• adocao_ia (unpivot)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9d6;strokeColor=#d4b106;align=left;spacingLeft=10;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="280" y="550" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="crawler_gold" value="Glue Crawlers (Gold)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="600" y="590" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- CATALOG -->
+        <mxCell id="catalog" value="AWS Glue Data Catalog&#10;(database: state_of_data_db)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="110" width="180" height="480" as="geometry" />
+        </mxCell>
+
+        <!-- ATHENA + OUTPUT -->
+        <mxCell id="athena" value="Amazon Athena&#10;(consultas SQL analíticas)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="260" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="output" value="Material Executivo&#10;PowerPoint/PDF&#10;+ Diagrama de Arquitetura&#10;+ Notebooks/Scripts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="400" width="190" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- IAM -->
+        <mxCell id="iam" value="IAM Role (AWS Academy Lab — LabRole) — utilizada por todos os Crawlers e pelo Glue Notebook" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#999999;dashed=1;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="280" y="700" width="800" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ARROWS: linha horizontal Bronze -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kaggle" target="s3_bronze">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=none;curved=1;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3_bronze" target="crawler_bronze">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.15;entryDx=0;entryDy=0;" edge="1" parent="1" source="crawler_bronze" target="catalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ARROWS: coluna vertical Bronze -> Processing -> Silver -> Gold -->
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3_bronze" target="etl_steps">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="etl_steps" target="s3_silver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3_silver" target="s3_gold">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ARROWS: linha horizontal Silver -->
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3_silver" target="crawler_silver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="crawler_silver" target="catalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ARROWS: linha horizontal Gold -->
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3_gold" target="crawler_gold">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.85;entryDx=0;entryDy=0;" edge="1" parent="1" source="crawler_gold" target="catalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ARROWS: Catalog -> Athena -> Output -->
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="catalog" target="athena">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="athena" target="output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
