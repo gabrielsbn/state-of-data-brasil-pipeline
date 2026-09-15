@@ -440,7 +440,7 @@ Todos os entregáveis obrigatórios do Tech Challenge Fase 3 foram concluídos:
 | Diagrama de arquitetura da solução | `docs/arquitetura_tech_challenge.drawio` (editável) e `.png` (exportado) |
 | Material executivo com DataViz e Storytelling | `entregaveis/panorama_mercado_dados.pptx` (19 slides) |
 | Relatório executivo (documento escrito) | `entregaveis/relatorio_executivo_state_of_data.docx` |
-| Notebook consolidado com os scripts do pipeline | `notebooks/` (pendente de publicação) |
+| Notebook consolidado com os scripts do pipeline | `notebooks/` |
 | Vídeo da apresentação executiva | [youtu.be/bsXQTBa6kuA](https://youtu.be/bsXQTBa6kuA) |
 
 Repositório: [github.com/gabrielsbn/state-of-data-brasil-pipeline](https://github.com/gabrielsbn/state-of-data-brasil-pipeline)
