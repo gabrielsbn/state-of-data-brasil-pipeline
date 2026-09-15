@@ -430,7 +430,26 @@ Percentual de gestores que reportam IA generativa como prioridade da empresa: 36
 
 Cinco tabelas Gold concluídas: `gold_perfil_mercado`, `gold_remuneracao_por_perfil`, `gold_diversidade`, `gold_adocao_tecnologias`, `gold_adocao_ia`. Todas particionadas por `ano_pesquisa`, catalogadas no Glue Data Catalog, e validadas via Athena com resultados de negócio plausíveis.
 
-## 22. Próximos passos
+## 22. Fechamento do projeto
 
-1. Diagrama de arquitetura da solução (Draw.io), cobrindo o fluxo completo: S3 (Bronze/Silver/Gold) → Glue Crawlers/Notebook (Spark) → Glue Data Catalog → Athena.
-2. Material executivo com storytelling (PowerPoint/PDF): estrutura do mercado, remuneração por perfil, diversidade, adoção de tecnologias, adoção de IA — documento separado deste README, focado em insight de negócio, não em detalhe técnico de engenharia.
+Todos os entregáveis obrigatórios do Tech Challenge Fase 3 foram concluídos:
+
+| Entregável | Local |
+|---|---|
+| Pipeline de dados completo (Bronze → Silver → Gold) em AWS | Documentado neste README, seções 1-21 |
+| Diagrama de arquitetura da solução | `docs/arquitetura_tech_challenge.drawio` (editável) e `.png` (exportado) |
+| Material executivo com DataViz e Storytelling | `entregaveis/panorama_mercado_dados.pptx` (19 slides) |
+| Relatório executivo (documento escrito) | `entregaveis/relatorio_executivo_state_of_data.docx` |
+| Notebook consolidado com os scripts do pipeline | `notebooks/` (pendente de publicação) |
+| Vídeo da apresentação executiva | [link a adicionar] |
+
+Repositório: [github.com/gabrielsbn/state-of-data-brasil-pipeline](https://github.com/gabrielsbn/state-of-data-brasil-pipeline)
+
+### Resumo dos principais achados de negócio
+
+- Analista de Dados segue como o cargo mais comum do mercado (~24%), com o mercado amadurecendo em senioridade (quase metade já é Sênior/Especialista em 2025-2026).
+- Engenharia de ML e Arquitetura de Dados lideram remuneração — perfis mais escassos e mais bem pagos.
+- Participação feminina em queda consistente nas 3 edições (24,4% → 22,0%).
+- SQL, Python e AWS seguem como base técnica dominante; Power BI lidera com folga em BI.
+- Priorização de IA generativa entre gestores saltou de 36,2% para 60,6% em 3 anos — a maior tendência identificada no estudo. O principal obstáculo à adoção é técnico (expertise e maturidade de dados), não falta de patrocínio executivo.
+- Sudeste concentra 62,3% dos profissionais e paga o maior salário médio — diferencial de até 33% frente ao Nordeste.
